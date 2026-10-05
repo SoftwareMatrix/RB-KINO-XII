@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <title>KINO XII</title>
+  </head>
+
+  <body class="home-page">
+    <!--Header start-->
+
+    <header class="site-header">
+      <a class="header-logo" href="index.html" aria-label="kino XII home"
+        >KINO <span>XII</span></a
+      >
+
+      <nav aria-label="Main navigation">
+        <a href="sessions.html">Sessions</a>
+      </nav>
+
+      <form
+        class="header-search"
+        action="sessions.html"
+        method="get"
+        role="search"
+      >
+        <label for="header-search-input" class="visually-hidden"
+          >Search films and live events</label
+        >
+        <img
+          class="search-icon"
+          src="assets/icons/search.svg"
+          alt="search icon"
+        />
+        <input
+          id="header-search-input"
+          type="search"
+          name="search"
+          placeholder="Search films and live events"
+        />
+      </form>
+
+      <div class="header-auth">
+        <a class="signup-button" href="signup.html">Sign up</a>
+        <a class="login-button" href="authorization.html">Log in</a>
+      </div>
+    </header>
+
+    <!-- Main movie hero slider start -->
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <img class="hero-image" src="" alt="" fetchpriority="high" />
+        <div class="hero-content">
+          <p class="hero-premiere"></p>
+          <h1 id="hero-title"></h1>
+          <ul class="hero-badges" aria-label="Movie information"></ul>
+          <p class="hero-description"></p>
+          <div class="hero-actions">
+            <a class="hero-buy" href="movie.html">
+              <img src="assets/icons/ticket.svg" alt="" />Buy tickets
+            </a>
+            <a class="hero-sessions" href="sessions.html">All sessions</a>
+          </div>
+        </div>
+        <div class="hero-controls">
+          <div class="hero-progress" aria-hidden="true"></div>
+          <div class="hero-arrows">
+            <button
+              class="hero-arrow"
+              type="button"
+              aria-label="Previous movie"
+            >
+              <img src="assets/icons/arrow-left.svg" alt="" />
+            </button>
+            <button
+              class="hero-arrow hero-arrow-next"
+              type="button"
+              aria-label="Next movie"
+            >
+              <img src="assets/icons/arrow-right.svg" alt="" />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recently watched movies section -->
+
+      <section
+        class="recently-viewed"
+        id="recently-viewed"
+        aria-labelledby="recently-viewed-title"
+      >
+        <h2 id="recently-viewed-title">Recently viewed</h2>
+        <div class="recently-viewed-list"></div>
+      </section>
+
+      <!-- Now playing movies section -->
+
+      <section class="now-playing" aria-labelledby="now-playing-title">
+        <div class="section-heading">
+          <h2 id="now-playing-title">NOW PLAYING</h2>
+          <a href="sessions.html">See all</a>
+        </div>
+        <div class="now-playing-list"></div>
+      </section>
+
+      <!-- Coming soon movies section -->
+
+      <section class="coming-soon" aria-labelledby="coming-soon-title">
+        <div class="section-heading">
+          <h2 id="coming-soon-title">COMING SOON...</h2>
+          <a class="coming-soon-see-all" href="sessions.html">See all</a>
+        </div>
+        <div class="coming-soon-list" id="coming-soon-list"></div>
+      </section>
+    </main>
+
+    <!-- Footer start-->
+    <footer class="site-footer">
+      <div class="footer-divider" aria-hidden="true"></div>
+      <div class="footer-content">
+        <a href="index.html" aria-label="Kino XII home"
+          >KINO <span>XII</span></a
+        >
+        <p>© 2026 Kino XII. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
