@@ -1,0 +1,193 @@
+<!doctype html>
+
+<!-- Registration Page Start -->
+
+<html lang="en">
+  <!-- Document Head Start -->
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="pages.css" />
+
+    <title>Sign up · KINO XII</title>
+  </head>
+
+  <!-- Document Head End -->
+
+  <body class="auth-page">
+    <!-- Page Background Start -->
+
+    <iframe
+      class="auth-background"
+      src="index.html"
+      title=""
+      tabindex="-1"
+      aria-hidden="true"
+    ></iframe>
+
+    <!-- Page Background End -->
+
+    <!-- Registration Modal Start -->
+
+    <main class="modal-layer">
+      <section
+        class="auth-card signup-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="signup-title"
+      >
+        <a class="modal-close" href="index.html" aria-label="Close">
+          <img src="assets/icons/close.svg" alt="" />
+        </a>
+
+        <h1 id="signup-title">Sign up</h1>
+        <p class="auth-intro">Welcome to Kino XII</p>
+
+        <!-- Registration Form Start -->
+
+        <form class="auth-form">
+          <label class="avatar-upload" for="avatar">
+            <span class="upload-icon">
+              <img
+                class="avatar-upload-glyph"
+                src="assets/icons/avatar-upload.svg"
+                alt=""
+              />
+
+              <img
+                class="avatar-preview"
+                alt="Selected avatar preview"
+                hidden
+              />
+            </span>
+
+            <span>
+              <strong>Upload avatar (optional)</strong>
+              <small>JPG, PNG or WEBP</small>
+            </span>
+          </label>
+
+          <input
+            class="visually-hidden"
+            id="avatar"
+            name="avatar"
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+          />
+
+          <div class="form-field" data-validation="username">
+            <label for="signup-name">Username</label>
+
+            <span class="input-shell">
+              <input
+                id="signup-name"
+                name="username"
+                type="text"
+                placeholder="User"
+                autocomplete="username"
+                minlength="3"
+                required
+              />
+
+              <i class="field-status" aria-hidden="true"></i>
+            </span>
+
+            <small class="field-message"> At least 3 characters. </small>
+          </div>
+
+          <div class="form-field" data-validation="email">
+            <label for="signup-email">Email</label>
+
+            <span class="input-shell">
+              <input
+                id="signup-email"
+                name="email"
+                type="email"
+                placeholder="example@gmail.com"
+                autocomplete="email"
+                required
+              />
+
+              <i class="field-status" aria-hidden="true"></i>
+            </span>
+
+            <small class="field-message"> Enter a valid email address. </small>
+          </div>
+
+          <div class="auth-field-row">
+            <div class="form-field" data-validation="password">
+              <label for="signup-password">Password</label>
+
+              <span class="input-shell">
+                <input
+                  id="signup-password"
+                  name="password"
+                  type="password"
+                  placeholder="••••••••"
+                  autocomplete="new-password"
+                  minlength="3"
+                  required
+                />
+
+                <i class="field-status" aria-hidden="true"></i>
+              </span>
+
+              <small class="field-message"> At least 3 characters. </small>
+            </div>
+
+            <div class="form-field" data-validation="confirmation">
+              <label for="confirm-password">Confirm password</label>
+
+              <span class="input-shell">
+                <input
+                  id="confirm-password"
+                  name="password_confirmation"
+                  type="password"
+                  placeholder="••••••••"
+                  autocomplete="new-password"
+                  minlength="3"
+                  required
+                />
+
+                <i class="field-status" aria-hidden="true"></i>
+              </span>
+
+              <small class="field-message"> Passwords do not match. </small>
+            </div>
+          </div>
+
+          <button class="auth-submit" type="submit" disabled>Sign up</button>
+        </form>
+
+        <!-- Registration Form End -->
+
+        <p class="auth-switch">
+          Already have an account?
+          <a href="authorization.html">Log in</a>
+        </p>
+      </section>
+    </main>
+
+    <!-- Registration Modal End -->
+
+    <!-- Scripts Start -->
+
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+
+    <!-- Scripts End -->
+  </body>
+</html>
+
+<!-- Registration Page End -->
