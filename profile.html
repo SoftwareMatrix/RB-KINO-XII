@@ -1,0 +1,206 @@
+<!doctype html>
+
+<!-- Profile Page Start -->
+
+<html lang="en">
+  <!-- Document Head Start -->
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="pages.css" />
+
+    <title>My Profile · KINO XII</title>
+  </head>
+
+  <!-- Document Head End -->
+
+  <body class="inner-page profile-page">
+    <!-- Header Start -->
+
+    <header class="site-header">
+      <a class="header-logo" href="index.html" aria-label="Kino XII home">
+        KINO <span>XII</span>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <a href="sessions.html">Sessions</a>
+      </nav>
+
+      <form
+        class="header-search"
+        action="sessions.html"
+        method="get"
+        role="search"
+      >
+        <label class="visually-hidden" for="profile-search">
+          Search films and live events
+        </label>
+
+        <img class="search-icon" src="assets/icons/search.svg" alt="" />
+
+        <input
+          id="profile-search"
+          name="search"
+          type="search"
+          placeholder="Search films and live events"
+        />
+      </form>
+
+      <div class="header-auth">
+        <a class="signup-button page-auth-link" href="signup.html"> Sign up </a>
+
+        <a class="login-button page-auth-link" href="authorization.html">
+          Log in
+        </a>
+      </div>
+    </header>
+
+    <!-- Header End -->
+
+    <!-- Profile Content Start -->
+
+    <main class="page-shell profile-shell">
+      <h1 class="page-title">My Profile</h1>
+
+      <nav class="profile-tabs" aria-label="Profile sections">
+        <a class="active" href="profile.html"> Personal Information </a>
+
+        <a href="tickets.html"> My Tickets <span>0</span> </a>
+      </nav>
+
+      <p class="profile-completion-alert" role="status" hidden>
+        Please complete your profile to enable booking.
+      </p>
+
+      <!-- Personal Information Form Start -->
+
+      <form class="profile-form" novalidate>
+        <label class="form-field">
+          Full name
+
+          <span class="input-shell">
+            <input
+              type="text"
+              name="full_name"
+              minlength="3"
+              maxlength="50"
+              required
+            />
+
+            <i class="field-status" aria-hidden="true"></i>
+          </span>
+
+          <small class="field-message"> Enter at least 3 characters. </small>
+        </label>
+
+        <label class="form-field">
+          Email
+
+          <span class="input-shell">
+            <input type="email" name="email" readonly />
+          </span>
+
+          <small> Set at registration and cannot be changed </small>
+        </label>
+
+        <label class="form-field">
+          Mobile number
+
+          <span class="input-shell">
+            <input
+              type="tel"
+              name="mobile"
+              inputmode="numeric"
+              pattern="5[0-9 ]{8,11}"
+              required
+            />
+
+            <i class="field-status" aria-hidden="true"></i>
+          </span>
+
+          <small class="field-message">
+            Enter a valid 9 digit mobile number.
+          </small>
+        </label>
+
+        <label class="form-field date-field">
+          Date of birth
+
+          <span class="input-shell date-field-shell">
+            <input type="hidden" name="birth_date" required />
+
+            <button
+              class="date-picker-trigger"
+              type="button"
+              aria-haspopup="dialog"
+              aria-expanded="false"
+            >
+              <span class="date-picker-value"> MM/DD/YYYY </span>
+
+              <img src="assets/icons/calendar.svg" alt="" />
+            </button>
+
+            <i class="field-status" aria-hidden="true"></i>
+
+            <span
+              class="date-picker"
+              role="dialog"
+              aria-label="Choose date of birth"
+              hidden
+            ></span>
+          </span>
+
+          <small class="field-message"> Choose a valid date of birth. </small>
+        </label>
+
+        <label>
+          Preferred Venue (Optional)
+
+          <select name="venue">
+            <option value="">e.g. Text</option>
+          </select>
+        </label>
+
+        <button type="submit">Save changes</button>
+      </form>
+
+      <!-- Personal Information Form End -->
+    </main>
+
+    <!-- Profile Content End -->
+
+    <!-- Footer Start -->
+
+    <footer class="site-footer">
+      <div class="footer-divider" aria-hidden="true"></div>
+
+      <div class="footer-content">
+        <a href="index.html"> KINO <span>XII</span> </a>
+
+        <p>© 2026 Kino XII. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Footer End -->
+
+    <!-- Scripts Start -->
+
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+
+    <!-- Scripts End -->
+  </body>
+</html>
+
+<!-- Profile Page End -->

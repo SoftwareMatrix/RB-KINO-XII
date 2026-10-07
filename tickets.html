@@ -1,0 +1,136 @@
+<!doctype html>
+
+<!-- Tickets Page Start -->
+
+<html lang="en">
+  <!-- Document Head Start -->
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="pages.css" />
+
+    <title>My Tickets · KINO XII</title>
+  </head>
+
+  <!-- Document Head End -->
+
+  <body class="inner-page profile-page">
+    <!-- Header Start -->
+
+    <header class="site-header">
+      <a class="header-logo" href="index.html" aria-label="Kino XII home">
+        KINO <span>XII</span>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <a href="sessions.html">Sessions</a>
+      </nav>
+
+      <form
+        class="header-search"
+        action="sessions.html"
+        method="get"
+        role="search"
+      >
+        <label class="visually-hidden" for="tickets-search">
+          Search films and live events
+        </label>
+
+        <img class="search-icon" src="assets/icons/search.svg" alt="" />
+
+        <input
+          id="tickets-search"
+          name="search"
+          type="search"
+          placeholder="Search films and live events"
+        />
+      </form>
+
+      <div class="header-auth">
+        <a class="signup-button page-auth-link" href="signup.html"> Sign up </a>
+
+        <a class="login-button page-auth-link" href="authorization.html">
+          Log in
+        </a>
+      </div>
+    </header>
+
+    <!-- Header End -->
+
+    <!-- Tickets Content Start -->
+
+    <main class="page-shell profile-shell tickets-shell">
+      <h1 class="page-title">My Profile</h1>
+
+      <nav class="profile-tabs" aria-label="Profile sections">
+        <a href="profile.html"> Personal Information </a>
+
+        <a class="active" href="tickets.html"> My Tickets <span>0</span> </a>
+      </nav>
+
+      <div class="ticket-period">
+        <a class="upcoming-tab active" href="#upcoming">
+          Upcoming <span>0</span>
+        </a>
+
+        <a class="past-tab" href="#past"> Past <span>0</span> </a>
+      </div>
+
+      <!-- Upcoming Tickets Start -->
+
+      <section
+        class="profile-tickets"
+        id="upcoming"
+        aria-label="Upcoming tickets"
+      ></section>
+
+      <!-- Upcoming Tickets End -->
+
+      <!-- Past Tickets Start -->
+
+      <section
+        class="profile-tickets past-tickets"
+        id="past"
+        aria-label="Past tickets"
+      ></section>
+
+      <!-- Past Tickets End -->
+    </main>
+
+    <!-- Tickets Content End -->
+
+    <!-- Footer Start -->
+
+    <footer class="site-footer">
+      <div class="footer-divider" aria-hidden="true"></div>
+
+      <div class="footer-content">
+        <a href="index.html"> KINO <span>XII</span> </a>
+
+        <p>© 2026 Kino XII. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Footer End -->
+
+    <!-- Scripts Start -->
+
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+
+    <!-- Scripts End -->
+  </body>
+</html>
+
+<!-- Tickets Page End -->

@@ -1382,12 +1382,18 @@ async function setupBooking() {
   form.elements.full_name.value = state.user.fullName || "";
   form.elements.email.value = state.user.email;
   form.elements.mobile.value = state.user.mobileNumber || "";
-  const expiryValid = (value) => {
-    if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(value)) return false;
+  const expiryState = (value) => {
+    if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(value))
+      return { valid: false, message: "Use MM/YY format." };
     const [month, year] = value.split("/").map(Number);
-    return new Date(2000 + year, month) > new Date();
+    const valid = new Date(2000 + year, month) > new Date();
+    return {
+      valid,
+      message: valid ? "" : "Card has expired.",
+    };
   };
   const validate = (force = false) => {
+    const expiry = expiryState(form.elements.expiry.value);
     const checks = {
       full_name: form.elements.full_name.value.trim().length >= 3,
       email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.elements.email.value),
@@ -1395,13 +1401,14 @@ async function setupBooking() {
       card_number: /^\d{16}$/.test(
         form.elements.card_number.value.replace(/\s/g, ""),
       ),
-      expiry: expiryValid(form.elements.expiry.value),
+      expiry: expiry.valid,
       cvv: /^\d{3}$/.test(form.elements.cvv.value),
     };
     Object.entries(checks).forEach(([name, ok]) =>
       setField(
         form.elements[name],
         form.elements[name].value || force ? ok : null,
+        name === "expiry" && !ok ? expiry.message : undefined,
       ),
     );
     pay.disabled = !hold || !Object.values(checks).every(Boolean);
@@ -1556,6 +1563,7 @@ function setupDatePicker(form) {
       : "MM/DD/YYYY";
   };
   let view = parse(input.value) || maximum;
+  let calendarView = "days";
 
   const sync = () => {
     value.textContent = display(input.value);
@@ -1565,7 +1573,7 @@ function setupDatePicker(form) {
     popup.hidden = true;
     trigger.setAttribute("aria-expanded", "false");
   };
-  const render = () => {
+  const renderDays = () => {
     const year = view.getFullYear();
     const month = view.getMonth();
     const selected = parse(input.value);
@@ -1584,7 +1592,24 @@ function setupDatePicker(form) {
       const chosen = selected && iso(selected) === dateValue;
       return `<button class="calendar-day${outside ? " is-outside" : ""}${chosen ? " is-selected" : ""}" type="button" data-date="${dateValue}" ${disabled ? "disabled" : ""} aria-label="${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}" ${chosen ? 'aria-current="date"' : ""}>${date.getDate()}</button>`;
     }).join("");
-    popup.innerHTML = `<div class="date-picker-header"><button class="date-picker-nav" type="button" data-calendar-action="previous" ${previousDisabled ? "disabled" : ""} aria-label="Previous month">‹</button><strong class="date-picker-heading">${monthNames[month]} ${year}</strong><button class="date-picker-nav" type="button" data-calendar-action="next" ${nextDisabled ? "disabled" : ""} aria-label="Next month">›</button></div><div class="date-picker-weekdays" aria-hidden="true"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div><div class="date-picker-days">${days}</div><div class="date-picker-footer"><button class="date-picker-action" type="button" data-calendar-action="clear">Clear</button><button class="date-picker-action" type="button" data-calendar-action="latest">Latest eligible date</button></div>`;
+    popup.innerHTML = `<div class="date-picker-header"><button class="date-picker-nav" type="button" data-calendar-action="previous" ${previousDisabled ? "disabled" : ""} aria-label="Previous month">‹</button><button class="date-picker-heading" type="button" data-calendar-action="years" aria-label="Choose year">${monthNames[month]} ${year}</button><button class="date-picker-nav" type="button" data-calendar-action="next" ${nextDisabled ? "disabled" : ""} aria-label="Next month">›</button></div><div class="date-picker-weekdays" aria-hidden="true"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div><div class="date-picker-days">${days}</div><div class="date-picker-footer"><button class="date-picker-action" type="button" data-calendar-action="clear">Clear</button><button class="date-picker-action" type="button" data-calendar-action="latest">Latest eligible date</button></div>`;
+  };
+  const renderYears = () => {
+    const minimumYear = minimum.getFullYear();
+    const maximumYear = maximum.getFullYear();
+    const rangeStart = Math.floor(view.getFullYear() / 12) * 12;
+    const rangeEnd = rangeStart + 11;
+    const years = Array.from({ length: 12 }, (_, index) => {
+      const year = rangeStart + index;
+      const disabled = year < minimumYear || year > maximumYear;
+      const selected = year === view.getFullYear();
+      return `<button class="calendar-year${selected ? " is-selected" : ""}" type="button" data-year="${year}" ${disabled ? "disabled" : ""} ${selected ? 'aria-current="true"' : ""}>${year}</button>`;
+    }).join("");
+    popup.innerHTML = `<div class="date-picker-header"><button class="date-picker-nav" type="button" data-calendar-action="previous" ${rangeStart <= minimumYear ? "disabled" : ""} aria-label="Previous years">‹</button><strong class="date-picker-heading is-static">${rangeStart}–${rangeEnd}</strong><button class="date-picker-nav" type="button" data-calendar-action="next" ${rangeEnd >= maximumYear ? "disabled" : ""} aria-label="Next years">›</button></div><div class="date-picker-years">${years}</div>`;
+  };
+  const render = () => {
+    if (calendarView === "years") return renderYears();
+    renderDays();
   };
   const choose = (raw) => {
     input.value = raw;
@@ -1600,22 +1625,47 @@ function setupDatePicker(form) {
     event.stopPropagation();
     if (!popup.hidden) return close();
     view = parse(input.value) || maximum;
+    calendarView = "days";
     render();
     popup.hidden = false;
     trigger.setAttribute("aria-expanded", "true");
   });
   popup.addEventListener("click", (event) => {
+    event.preventDefault();
     event.stopPropagation();
     const day = event.target.closest("[data-date]");
     if (day) return choose(day.dataset.date);
+    const yearButton = event.target.closest("[data-year]");
+    if (yearButton) {
+      const selectedYear = Number(yearButton.dataset.year);
+      const selectedMonth =
+        selectedYear === maximum.getFullYear()
+          ? Math.min(view.getMonth(), maximum.getMonth())
+          : view.getMonth();
+      view = new Date(selectedYear, selectedMonth, 1, 12);
+      calendarView = "days";
+      return render();
+    }
     const action = event.target.closest("[data-calendar-action]")?.dataset
       .calendarAction;
     if (action === "clear") return choose("");
     if (action === "latest") return choose(iso(maximum));
-    if (action === "previous")
-      view = new Date(view.getFullYear(), view.getMonth() - 1, 1, 12);
-    if (action === "next")
-      view = new Date(view.getFullYear(), view.getMonth() + 1, 1, 12);
+    if (action === "years") {
+      calendarView = "years";
+      return render();
+    }
+    if (action === "previous") {
+      view =
+        calendarView === "years"
+          ? new Date(view.getFullYear() - 12, view.getMonth(), 1, 12)
+          : new Date(view.getFullYear(), view.getMonth() - 1, 1, 12);
+    }
+    if (action === "next") {
+      view =
+        calendarView === "years"
+          ? new Date(view.getFullYear() + 12, view.getMonth(), 1, 12)
+          : new Date(view.getFullYear(), view.getMonth() + 1, 1, 12);
+    }
     if (action === "previous" || action === "next") render();
   });
   input.addEventListener("input", sync);

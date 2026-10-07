@@ -1932,14 +1932,33 @@ label.form-field.is-invalid {
 }
 
 .date-picker-heading {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  border: 0;
+  border-radius: 8px;
+  background-color: transparent;
   color: var(--text-color);
+  font: inherit;
   font-size: 13px;
   font-weight: 800;
   text-align: center;
+  cursor: pointer;
+}
+
+.date-picker-heading:hover,
+.date-picker-heading:focus-visible {
+  outline: 0;
+  background-color: var(--raised-background);
+}
+
+.date-picker-heading.is-static {
+  cursor: default;
 }
 
 .date-picker-nav,
 .calendar-day,
+.calendar-year,
 .date-picker-action {
   border: 0;
   color: var(--text-color);
@@ -1966,6 +1985,37 @@ label.form-field.is-invalid {
 
 .date-picker-nav:disabled {
   opacity: 0.32;
+  cursor: default;
+}
+
+
+.date-picker-years {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.calendar-year {
+  min-height: 40px;
+  padding: 8px;
+  border-radius: 9px;
+  background-color: transparent;
+  font-size: 12px;
+}
+
+.calendar-year:hover:not(:disabled),
+.calendar-year:focus-visible:not(:disabled) {
+  outline: 0;
+  background-color: var(--raised-background);
+}
+
+.calendar-year.is-selected {
+  background-color: var(--accent-color);
+  font-weight: 800;
+}
+
+.calendar-year:disabled {
+  color: #555867;
   cursor: default;
 }
 
