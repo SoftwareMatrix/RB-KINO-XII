@@ -1270,6 +1270,52 @@ h3 {
   }
 }
 
+@media (max-width: 600px) {
+  .home-page main > section:not(.hero) {
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+
+  .hero-content {
+    right: 24px;
+    bottom: 176px;
+    left: 24px;
+    width: auto;
+    gap: 12px;
+  }
+
+  .hero h1 {
+    max-width: 100%;
+    font-size: 32px;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-description {
+    width: 100%;
+  }
+
+  .hero-badges,
+  .hero-actions {
+    flex-wrap: wrap;
+  }
+
+  .hero-controls {
+    right: 24px;
+    left: 24px;
+    gap: 12px;
+  }
+
+  .recently-viewed-list {
+    width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+  }
+
+  .recent-movie {
+    width: min(330px, calc(100vw - 40px));
+    flex: 0 0 min(330px, calc(100vw - 40px));
+  }
+}
 /* Responsive Styles End */
 
 /* Interactive States Start */
