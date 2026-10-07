@@ -1,0 +1,260 @@
+<!doctype html>
+<!-- Booking Page Start -->
+<html lang="en">
+  <!-- Document Head Start -->
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="pages.css" />
+    <title>Buy tickets · KINO XII</title>
+  </head>
+
+  <!-- Document Head End -->
+  <body class="booking-page">
+    <iframe
+      class="booking-background"
+      src="movie.html"
+      title=""
+      tabindex="-1"
+      aria-hidden="true"
+    ></iframe>
+
+    <main class="booking-layer">
+      <!-- Booking Modal Start -->
+
+      <section
+        class="booking-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="booking-title"
+      >
+        <a
+          class="booking-close"
+          href="movie.html"
+          aria-label="Close ticket purchase"
+          ><img src="assets/icons/close.svg" alt=""
+        /></a>
+        <header class="booking-heading">
+          <div>
+            <h1 id="booking-title"></h1>
+            <p class="booking-session-meta"></p>
+          </div>
+          <div class="seat-timer" hidden>
+            <span>Seats held</span><strong></strong>
+          </div>
+        </header>
+
+        <!-- Seat Selection Start -->
+        <section class="booking-step seats-step" id="seats">
+          <div class="booking-main-column">
+            <nav class="booking-tabs" aria-label="Purchase steps">
+              <a class="active" href="#seats">Seats</a
+              ><a href="#checkout">Checkout</a>
+            </nav>
+            <div class="cinema-screen">SCREEN</div>
+            <p class="seat-map-title">STALLS · ROWS A–D</p>
+            <div class="seat-map"></div>
+            <div class="seat-legend">
+              <span><i></i>Available</span
+              ><span><i class="selected"></i>Selected</span
+              ><span><i class="sold"></i>Sold</span
+              ><span><i class="held"></i>Held by another user</span>
+            </div>
+          </div>
+
+          <aside class="booking-summary seats-summary">
+            <h2>Your seats</h2>
+            <p>
+              Pick seats from the map. Each seat can carry its own ticket type.
+            </p>
+            <div class="selected-seats"></div>
+            <div class="booking-total">
+              <span>Subtotal</span><strong>₾ 0</strong>
+            </div>
+            <a
+              class="booking-next disabled"
+              href="#checkout"
+              aria-disabled="true"
+              >Next: Checkout</a
+            >
+          </aside>
+        </section>
+
+        <!-- Seat Selection End -->
+
+        <!-- Checkout Start -->
+        <section class="booking-step checkout-step" id="checkout">
+          <div class="booking-main-column">
+            <nav class="booking-tabs" aria-label="Purchase steps">
+              <a href="#seats">Seats</a
+              ><a class="active" href="#checkout">Checkout</a>
+            </nav>
+            <form class="checkout-form" novalidate>
+              <label class="form-field"
+                >Full Name<span class="input-shell"
+                  ><input
+                    type="text"
+                    name="full_name"
+                    placeholder="e.g. Text"
+                    minlength="3"
+                    required /><i
+                    class="field-status"
+                    aria-hidden="true"
+                  ></i></span
+                ><small class="field-message"
+                  >Enter at least 3 characters.</small
+                ></label
+              >
+              <div>
+                <label class="form-field"
+                  >Email<span class="input-shell"
+                    ><input
+                      type="email"
+                      name="email"
+                      placeholder="e.g. Text"
+                      required /><i
+                      class="field-status"
+                      aria-hidden="true"
+                    ></i></span
+                  ><small class="field-message"
+                    >Enter a valid email address.</small
+                  ></label
+                ><label class="form-field"
+                  >Mobile Number<span class="input-shell"
+                    ><input
+                      type="tel"
+                      name="mobile"
+                      placeholder="e.g. Text"
+                      inputmode="numeric"
+                      pattern="5[0-9 ]{8,11}"
+                      required /><i
+                      class="field-status"
+                      aria-hidden="true"
+                    ></i></span
+                  ><small class="field-message"
+                    >Enter a valid 9 digit mobile number.</small
+                  ></label
+                >
+              </div>
+              <hr />
+              <label class="form-field"
+                >Card Number<span class="input-shell"
+                  ><input
+                    type="text"
+                    name="card_number"
+                    placeholder="16 digits"
+                    inputmode="numeric"
+                    autocomplete="cc-number"
+                    pattern="[0-9 ]{19}"
+                    maxlength="19"
+                    required /><i
+                    class="field-status"
+                    aria-hidden="true"
+                  ></i></span
+                ><small class="field-message"
+                  >Enter all 16 card digits.</small
+                ></label
+              >
+              <div>
+                <label class="form-field"
+                  >Expiry<span class="input-shell"
+                    ><input
+                      type="text"
+                      name="expiry"
+                      placeholder="MM/YY"
+                      inputmode="numeric"
+                      autocomplete="cc-exp"
+                      pattern="(0[1-9]|1[0-2])/[0-9]{2}"
+                      maxlength="5"
+                      required /><i
+                      class="field-status"
+                      aria-hidden="true"
+                    ></i></span
+                  ><small class="field-message">Use MM/YY format.</small></label
+                ><label class="form-field"
+                  >CVV<span class="input-shell"
+                    ><input
+                      type="text"
+                      name="cvv"
+                      placeholder="3 digits"
+                      inputmode="numeric"
+                      autocomplete="cc-csc"
+                      pattern="[0-9]{3}"
+                      maxlength="3"
+                      required /><i
+                      class="field-status"
+                      aria-hidden="true"
+                    ></i></span
+                  ><small class="field-message"
+                    >Enter the 3 digit CVV.</small
+                  ></label
+                >
+              </div>
+            </form>
+          </div>
+          <aside class="booking-summary checkout-summary">
+            <h2>Summary</h2>
+            <article>
+              <h3></h3>
+              <p></p>
+              <hr />
+              <p>Seats <strong></strong></p>
+              <p>Tickets <strong></strong></p>
+            </article>
+            <div class="booking-total">
+              <span>Subtotal</span><strong>₾0</strong>
+            </div>
+            <button class="booking-next" type="button" disabled>
+              Pay: Complete order
+            </button>
+          </aside>
+        </section>
+
+        <!-- Checkout End -->
+
+        <!-- Booking Confirmation Start -->
+        <section class="booking-confirmed" id="confirmed">
+          <div class="success-mark" aria-hidden="true"></div>
+          <h2>Booking confirmed!</h2>
+          <p>
+            Your tickets are ready. We've sent the confirmation to your email.
+          </p>
+          <strong class="order-number"></strong>
+          <article>
+            <div>
+              <img alt="" /><span><b></b><small></small></span>
+            </div>
+            <hr />
+            <p>Seats <strong></strong></p>
+            <p>Tickets <strong></strong></p>
+            <hr />
+            <p>TOTAL PAID <strong></strong></p>
+          </article>
+          <div>
+            <a class="booking-next" href="tickets.html">View my tickets</a
+            ><a class="secondary-action" href="index.html">Back to home</a>
+          </div>
+        </section>
+
+        <!-- Booking Confirmation End -->
+      </section>
+
+      <!-- Booking Modal End -->
+    </main>
+    <!-- Scripts Start -->
+
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+
+    <!-- Scripts End -->
+  </body>
+</html>
+<!-- Booking Page End -->

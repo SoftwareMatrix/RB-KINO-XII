@@ -1,0 +1,189 @@
+<!doctype html>
+
+<!-- Movie Details Page Start -->
+
+<html lang="en">
+  <!-- Document Head Start -->
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="pages.css" />
+
+    <title>The Odyssey · KINO XII</title>
+  </head>
+
+  <!-- Document Head End -->
+
+  <body class="movie-page">
+    <!-- Header Start -->
+
+    <header class="site-header">
+      <a class="header-logo" href="index.html" aria-label="Kino XII home">
+        KINO <span>XII</span>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <a href="sessions.html">Sessions</a>
+      </nav>
+
+      <form
+        class="header-search"
+        action="sessions.html"
+        method="get"
+        role="search"
+      >
+        <label class="visually-hidden" for="movie-search">
+          Search films and live events
+        </label>
+
+        <img class="search-icon" src="assets/icons/search.svg" alt="" />
+
+        <input
+          id="movie-search"
+          name="search"
+          type="search"
+          placeholder="Search films and live events"
+        />
+      </form>
+
+      <div class="header-auth">
+        <a class="signup-button page-auth-link" href="signup.html"> Sign up </a>
+
+        <a class="login-button page-auth-link" href="authorization.html">
+          Log in
+        </a>
+      </div>
+    </header>
+
+    <!-- Header End -->
+
+    <!-- Main Content Start -->
+
+    <main>
+      <!-- Movie Hero Start -->
+
+      <section class="movie-hero" aria-labelledby="movie-title">
+        <img class="movie-backdrop" src="" alt="" />
+
+        <div class="movie-hero-shade" aria-hidden="true"></div>
+
+        <div class="movie-intro">
+          <img class="movie-detail-poster" src="" alt="" />
+
+          <div class="movie-intro-copy">
+            <p class="movie-status"></p>
+            <h1 id="movie-title"></h1>
+            <p class="movie-description"></p>
+
+            <ul class="movie-detail-badges" aria-label="Movie information"></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Movie Hero End -->
+
+      <!-- Movie Content Start -->
+
+      <div class="movie-content">
+        <!-- Movie Sessions Start -->
+
+        <section class="movie-sessions" aria-labelledby="movie-sessions-title">
+          <h2 id="movie-sessions-title">Sessions</h2>
+          <p>Loading sessions</p>
+
+          <div class="movie-days" aria-label="Choose a date"></div>
+        </section>
+
+        <!-- Movie Sessions End -->
+
+        <!-- Movie Details Start -->
+
+        <aside class="movie-facts">
+          <h2>Details</h2>
+
+          <dl>
+            <div>
+              <dt>Director</dt>
+              <dd data-detail="director">—</dd>
+            </div>
+
+            <div>
+              <dt>Main cast</dt>
+              <dd data-detail="cast">—</dd>
+            </div>
+
+            <div>
+              <dt>Duration</dt>
+              <dd data-detail="duration">—</dd>
+            </div>
+
+            <div>
+              <dt>Genre</dt>
+              <dd data-detail="genre">—</dd>
+            </div>
+
+            <div>
+              <dt>Release date</dt>
+              <dd data-detail="release-date">—</dd>
+            </div>
+
+            <div>
+              <dt>Formats</dt>
+              <dd data-detail="formats">—</dd>
+            </div>
+
+            <div>
+              <dt>From</dt>
+              <dd data-detail="price">—</dd>
+            </div>
+          </dl>
+
+          <div class="rating-note">
+            <strong>Rating note</strong>
+            <p></p>
+          </div>
+        </aside>
+
+        <!-- Movie Details End -->
+      </div>
+
+      <!-- Movie Content End -->
+    </main>
+
+    <!-- Main Content End -->
+
+    <!-- Footer Start -->
+
+    <footer class="site-footer">
+      <div class="footer-divider" aria-hidden="true"></div>
+
+      <div class="footer-content">
+        <a href="index.html"> KINO <span>XII</span> </a>
+
+        <p>© 2026 Kino XII. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Footer End -->
+
+    <!-- Scripts Start -->
+
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+
+    <!-- Scripts End -->
+  </body>
+</html>
+
+<!-- Movie Details Page End -->
